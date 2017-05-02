@@ -1,0 +1,71 @@
+<!-- {% extends 'news/base.html' %}
+
+{% block content %} -->
+
+
+<table class="table table-bordered">
+  <thead>
+
+  </thead>
+  <tbody>
+    <div class="row">
+        <div class="col-md-8">
+          <div blog-post>
+          </br>
+        {% for entry in users %}
+          {% if entry.practiceArea == "Trusts and Estates"  %}
+              <a href="/trusts_and_estates"><h5 class="area-trusts">{{entry.practiceArea}}</h5></a>
+          {% elif entry.practiceArea == "Criminal Law" %}
+              <a href="/criminal"><h5 class="area-criminal">{{entry.practiceArea}}</h5></a>
+          {% elif entry.practiceArea == "Real Estate Law" %}
+              <a href="/real_estate"><h5 class="area-real-estate">{{entry.practiceArea}}</h5></a>
+          {% elif entry.practiceArea == "Tax Law" %}
+              <a href="/tax"><h5 class="area-tax">{{entry.practiceArea}}</h5></a>
+          {% elif entry.practiceArea == "Injury Law" %}
+              <a href="/injury"><h5 class="area-injury">{{entry.practiceArea}}</h5></a>
+          {% elif entry.practiceArea == "Family Law" %}
+              <a href="/family"><h5 class="area-family">{{entry.practiceArea}}</h5></a>
+          {% elif entry.practiceArea == "Litigation Law" %}
+              <a href="/litigation"><h5 class="area-litigation">{{entry.practiceArea}}</h5></a>
+          {% endif %}
+
+          <h5 class="blog-post-title"><a href="{{entry.url}}" target+"_blank">{{entry.title}}</a></h5>
+          <p><h6 class="blog-post-meta">{{entry.publication_date}}</p>
+          <p><a href="/authors/{{ entry.authorSlug }}">{{entry.author | safe}}</a> | <a href="http://{{entry.domain}}" target+"_blank">{{entry.domain}}</a></h6>
+          <p>{{entry.description | safe }}</p>
+          <!-- <p><a href="{{entry.url}}" target+"_blank" class="btn btn-info btn-xs">Read More</a></p> -->
+          <hr>
+        {% endfor %}
+        </div>
+          </div><!-- /.blog-main -->
+  </tbody>
+</table>
+
+{% if users.has_other_pages %}
+  <ul class="pagination">
+    {% if users.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+
+
+
+<!-- {% endblock %} -->
