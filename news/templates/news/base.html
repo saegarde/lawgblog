@@ -34,32 +34,70 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:900" rel="stylesheet">
     <style>
 
-    #grad1 {
-        height: 230px;
+    .grad2 {
+        height: 100vh;
         background: black; /* For browsers that do not support gradients */
         background: -webkit-linear-gradient(gray, white); /* For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(gray, white); /* For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(gray, white); /* For Firefox 3.6 to 15 */
-        background: linear-gradient(gray, white); /* Standard syntax (must be last) */
+        background: linear-gradient(orange, white); /* Standard syntax (must be last) */
     }
+
+
+    #grad1 {
+        height: 180px;
+        background: grey; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(orange, white); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(orange, white); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(orange, white); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(orange, white); /* Standard syntax (must be last) */
+    }
+
+@import "compass/css3";
+
+.affix {
+    top: 0;
+    width: 100%;
+  }
+
+.affix-top {
+    width: 100%;
+  }
+
+.affix-bottom {
+    position: absolute;
+    width: 100%;
+  }
 
   </style>
   </head>
 
   <body>
-
-    <div id="grad1">
+    <nav class="navba">
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item" <a href="/">Home</a>
           <a class="blog-nav-item" <a href="{% url 'feeds_list' %}">Feeds</a>
-          <a class="blog-nav-item" href="{% url 'feed_new' %}">Add Feed</a>
-          <a class="blog-nav-item" href="/admin">Admin</a>
+          {% if request.user.is_authenticated %}
+          <a class="blog-nav-item navbar-right" href="/logout">Logout</a>
+          <a class="blog-nav-item navbar-right" href="{% url 'feed_new' %}">Add Feed</a>
+          <a class="blog-nav-item navbar-right" href="{% url 'update' %}">Update Feeds</a>
+          <a class="blog-nav-item navbar-right" href="/admin">Admin</a>
+          {% else %}
+          <a class="blog-nav-item navbar-right" href="/login">Login</a>
+          {% endif %}
+
         </nav>
 
-        <div class='logo'>Lawg Blog</div>
+      </div>
+    </nav>
+    <div id="grad1">
+      <div class="container">
+
+        <!-- <div class='logo'>Lawg Blog</div> -->
           <div class="section section-header">
-            <p class="lead blog-description">Florida's best legal blogs &#8212; all in one place.</p>
+            <div class='logo'>Lawg Blog</div>
+            <p class="lead blog-description">Florida's best legal blogs &#8212; in one place.</p>
           </div>
 
       </div>
@@ -79,17 +117,18 @@
 <div class="col-md-1"></div>
 
 <div class="col-md-3">
-</br>
   <h3 class=practices><stong>Practice Areas</strong></h3>
-  <ol class="practices-list">
-  <li><a href="/">All Practice Areas</a></li>
-  <li><a href="/trusts_and_estates">Trusts and Estates</a></li>
-  <li><a href="/criminal">Criminal</a></li>
-  <li><a href="/real_estate">Real Estate</a></li>
-  <li><a href="/tax">Tax</a></li>
-  <li><a href="/personal_injury">Personal Injury</a></li>
-  <li><a href="/family_law">Family</a></li>
-  <li><a href="/litigation">Litigation</a></li>
+  <ol class="practices-list" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+  <li><a href="/">All Practice Area</a</li>
+  <li><a href="/trusts_and_estates">Trusts and Estates Law</a></li>
+  <li><a href="/criminal">Criminal Law</a></li>
+  <li><a href="/real_estate">Real Estate Law</a></li>
+  <li><a href="/business_law">Business Law</a></li>
+  <li><a href="/tax">Tax Law</a></li>
+  <li><a href="/health_law">Health Care Law</a></li>
+  <li><a href="/personal_injury">Personal Injury Law</a></li>
+  <li><a href="/family_law">Family Law</a></li>
+  <li><a href="/labor_law">Labor and Employment Law</a></li>
   </ol>
 </br>
 <h3 class=practices><stong>Reported Cases</strong></h3>

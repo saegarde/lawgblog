@@ -1,0 +1,33 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+
+
+
+<div class="row">
+    <div class="col-md-8">
+      </br>
+        <h3 class=practices>Update Feeds</h3>
+        {% if lists %}
+          {% for feed, articles in lists %}
+          <b>{{ feed  }}</b>
+
+          <ol class="practices-list">
+            {% for article in articles %}
+                <li> {{ article }}
+                  <!-- {% if feed.practiceArea == area.practiceArea %} -->
+                  <!-- <li>  <a href="{{feed.url}}">{{feed.url}}</a></li> -->
+                  <!-- {% endif %} -->
+            {% endfor %}
+            </ol>
+        </br>
+        {% endfor %}
+      {% else %}
+    </br>
+  </br>
+</br>
+        <div class="alert alert-success" role="alert"><center class=practices>No Updates</center></div>
+      {% endif %}
+      </div><!-- /.blog-main -->
+
+  {% endblock %}

@@ -18,13 +18,18 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^news/', include('news.urls')),
 #    url(r'^articles/', include('news.urls')),
     url(r'^authors/(?P<slug>[\w.@+-]+)/$','news.views.articles'),
-#    url(r'^test/','news.views.test'),
+    url(r'^login/','news.views.login_view'),
+    url(r'^logout/','news.views.logout_view'),
+    url(r'^update/','news.views.update', name='update'),
+    url(r'^test/','news.views.test', name='test'),
     url(r'^(?P<slug>[-\w]+)/$','news.views.articles'),
+#    url(r'^$', 'news.views.articles', name='home'),
     url(r'^$', 'news.views.articles', name='home'),
 
 #(?P<slug>[\w.@+-]+)/$
